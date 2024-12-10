@@ -1,5 +1,5 @@
 ---
-name: Bio
+name: default
 ---
 
 Lewis Carter was visiting an experimental observatory that used a giant gravitational lens to pull in radiation from space and study it up close. It caught a cosmic beam that a dying civilization had used to encode their civilization’s collective wisdom, hoping someone else in the universe would remember them. The whole of it engraved itself on Lewis’s brain.
