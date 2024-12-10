@@ -6,7 +6,8 @@ import styles from "./page.module.sass";
 
 interface PanelBlockProps {
   name: string;
-  value: string | undefined;
+  value: any;
+  children?: React.ReactNode;
 }
 
 interface CharacterDefaultViewProps {
@@ -22,7 +23,9 @@ function CharacterElement(props: PanelBlockProps) {
           <strong className="has-text-white p-1">{props.name}</strong>
         </div>
       </div>
-      <div className="column">{props.value}</div>
+      <div className="column">
+        {props.children ? props.children : props.value}
+      </div>
     </div>
   ) : (
     <></>
@@ -44,6 +47,13 @@ export default function CharacterDefaultView(props: CharacterDefaultViewProps) {
         <CharacterElement name="Role" value={character.role} />
         <CharacterElement name="Abilities" value={character.abilities} />
         <CharacterElement name="Struggles" value={character.struggles} />
+        <CharacterElement name="Affiliations" value={character.affiliations}>
+          <ul>
+            {character.affiliations?.map((affiliation) => (
+              <li key={affiliation}>{affiliation}</li>
+            ))}
+          </ul>
+        </CharacterElement>
       </div>
       <div className="column is-two-thirds">
         <div className="content">

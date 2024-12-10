@@ -7,8 +7,10 @@ interface CharacterGenericViewProps {
   tab: CvCharacterTab;
 }
 
-export default function CharacterGenericView(props: CharacterGenericViewProps) {
-  const { character, tab } = props;
+export default function CharacterContentOnlyView(
+  props: CharacterGenericViewProps
+) {
+  const { tab } = props;
 
   return (
     <div className="content">

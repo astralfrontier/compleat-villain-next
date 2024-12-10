@@ -3,7 +3,7 @@
 import { CvCharacter } from "@/lib/character-loader";
 import { useState } from "react";
 import CharacterDefaultView from "./CharacterDefaultView";
-import CharacterGenericView from "./CharacterGenericView";
+import CharacterContentOnlyView from "./CharacterContentOnlyView";
 
 interface CharacterTabsProps {
   character: CvCharacter;
@@ -49,7 +49,7 @@ export default function CharacterTabs(props: CharacterTabsProps) {
               );
             default:
               return (
-                <CharacterGenericView
+                <CharacterContentOnlyView
                   character={character}
                   tab={tab}
                   key={tabName}
