@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import markdownit from "markdown-it";
 import slug from "slug";
 const matter = require("gray-matter");
 
@@ -61,6 +62,7 @@ const DATA_CHARACTERS_ROOT = path.join(
 );
 
 function loadCharacters(): CvCharacter[] {
+  const md = markdownit();
   try {
     return fs.readdirSync(DATA_CHARACTERS_ROOT).map((characterPath) => {
       const fullCharacterPath = path.join(DATA_CHARACTERS_ROOT, characterPath);
@@ -80,7 +82,7 @@ function loadCharacters(): CvCharacter[] {
           );
           return {
             data: gm.data,
-            content: gm.content,
+            content: md.render(gm.content),
           };
         });
       const tabs = tabList.reduce(
