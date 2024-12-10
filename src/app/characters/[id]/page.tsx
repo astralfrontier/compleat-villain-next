@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import characters from "@/lib/character-loader";
 import CharacterTabs from "./CharacterTabs";
+import loadCharacters from "@/lib/character-loader";
 
 interface CharacterPageProps {
   params: Promise<{ id: string }>;
@@ -8,6 +8,7 @@ interface CharacterPageProps {
 
 export default async function CharacterPage({ params }: CharacterPageProps) {
   const { id } = await params;
+  const characters = loadCharacters();
   const character = characters.find((character) => character.id == id);
   return (
     <>
@@ -24,6 +25,7 @@ export async function generateMetadata({
   params,
 }: CharacterPageProps): Promise<Metadata> {
   const { id } = await params;
+  const characters = loadCharacters();
   const character = characters.find((character) => character.id == id);
   return {
     title: character?.name || "No name",
@@ -32,5 +34,6 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
+  const characters = loadCharacters();
   return characters.map((character) => ({ id: character.id }));
 }

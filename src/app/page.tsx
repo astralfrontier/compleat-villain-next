@@ -1,7 +1,8 @@
-import characters from "@/lib/character-loader";
+import loadCharacters from "@/lib/character-loader";
 import Link from "next/link";
 
 export default function Home() {
+  const characters = loadCharacters();
   return (
     <>
       <div className="grid">

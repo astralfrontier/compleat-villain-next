@@ -109,4 +109,4 @@ function loadCharacters(): CvCharacter[] {
   }
 }
 
-export default loadCharacters();
+export default loadCharacters;
