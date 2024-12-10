@@ -13,6 +13,7 @@ export default function CharacterTabs(props: CharacterTabsProps) {
   const { character } = props;
   const [selectedTab, setSelectedTab] = useState<string>("default");
   const clickToSelectTab = (tabName: string) => () => setSelectedTab(tabName);
+  const sortedTabs = Object.keys(character.tabs).sort();
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function CharacterTabs(props: CharacterTabsProps) {
           <li className={selectedTab == "default" ? "is-active" : ""}>
             <a onClick={clickToSelectTab("default")}>{character.name}</a>
           </li>
-          {Object.keys(character.tabs)
+          {sortedTabs
             .filter((tabName) => tabName != "default")
             .map((tabName) => (
               <li
@@ -33,7 +34,7 @@ export default function CharacterTabs(props: CharacterTabsProps) {
             ))}
         </ul>
       </div>
-      {Object.keys(character.tabs).map((tabName) => {
+      {sortedTabs.map((tabName) => {
         if (selectedTab == tabName) {
           const tab = character.tabs[tabName];
           const template =
