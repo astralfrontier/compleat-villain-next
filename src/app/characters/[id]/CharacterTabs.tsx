@@ -2,11 +2,12 @@
 
 import { CvCharacter } from "@/lib/character-loader";
 import { useState } from "react";
-import CharacterDefaultView from "./CharacterDefaultView";
+import CharacterDefaultView, { AffiliationLink } from "./CharacterDefaultView";
 import CharacterContentOnlyView from "./CharacterContentOnlyView";
 
 interface CharacterTabsProps {
   character: CvCharacter;
+  affiliationLinks: AffiliationLink[];
 }
 
 export default function CharacterTabs(props: CharacterTabsProps) {
@@ -45,6 +46,7 @@ export default function CharacterTabs(props: CharacterTabsProps) {
                 <CharacterDefaultView
                   character={character}
                   tab={tab}
+                  affiliationLinks={props.affiliationLinks}
                   key={tabName}
                 />
               );

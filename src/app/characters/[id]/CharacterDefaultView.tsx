@@ -3,6 +3,7 @@
 import { CvCharacter, CvCharacterTab } from "@/lib/character-loader";
 
 import styles from "./page.module.sass";
+import Link from "next/link";
 
 interface PanelBlockProps {
   name: string;
@@ -13,6 +14,12 @@ interface PanelBlockProps {
 interface CharacterDefaultViewProps {
   character: CvCharacter;
   tab: CvCharacterTab;
+  affiliationLinks: AffiliationLink[];
+}
+
+export interface AffiliationLink {
+  name: string;
+  url: string;
 }
 
 function CharacterElement(props: PanelBlockProps) {
@@ -33,7 +40,7 @@ function CharacterElement(props: PanelBlockProps) {
 }
 
 export default function CharacterDefaultView(props: CharacterDefaultViewProps) {
-  const { character, tab } = props;
+  const { character, tab, affiliationLinks } = props;
 
   return (
     <div className="columns">
@@ -49,8 +56,14 @@ export default function CharacterDefaultView(props: CharacterDefaultViewProps) {
         <CharacterElement name="Struggles" value={character.struggles} />
         <CharacterElement name="Affiliations" value={character.affiliations}>
           <ul>
-            {character.affiliations?.map((affiliation) => (
-              <li key={affiliation}>{affiliation}</li>
+            {affiliationLinks.map((affiliation) => (
+              <li key={affiliation.name}>
+                {affiliation.url ? (
+                  <Link href={affiliation.url}>{affiliation.name}</Link>
+                ) : (
+                  affiliation.name
+                )}
+              </li>
             ))}
           </ul>
         </CharacterElement>
