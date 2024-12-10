@@ -1,6 +1,6 @@
-import { CvCharacter } from "@/lib/character-loader";
 import { Metadata } from "next";
 import characters from "@/lib/character-loader";
+import CharacterTabs from "./CharacterTabs";
 
 interface CharacterPageProps {
   params: Promise<{ id: string }>;
@@ -11,7 +11,11 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
   const character = characters.find((character) => character.id == id);
   return (
     <>
-      <pre>{JSON.stringify(character, null, 2)}</pre>
+      {character ? (
+        <CharacterTabs character={character} />
+      ) : (
+        <h1>Character Not Found</h1>
+      )}
     </>
   );
 }
