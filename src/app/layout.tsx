@@ -19,7 +19,18 @@ export default function RootLayout({
         <footer className="footer">
           <div className="columns is-centered">
             <div className="column is-one-quarter">
-              <Link href={"/"}>Home</Link>
+              <p>
+                <Link href={"/"}>Home</Link>
+              </p>
+              <p>
+                <Link
+                  href={
+                    "https://github.com/astralfrontier/compleat-villain-next"
+                  }
+                >
+                  GitHub
+                </Link>
+              </p>
             </div>
           </div>
         </footer>
