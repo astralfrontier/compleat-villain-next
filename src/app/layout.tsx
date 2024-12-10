@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="container">{children}</div>
-        <footer className="footer">
+        <footer className="footer mt-4">
           <div className="columns is-centered">
             <div className="column is-one-quarter">
               <p>
