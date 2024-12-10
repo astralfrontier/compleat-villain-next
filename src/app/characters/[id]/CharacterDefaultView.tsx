@@ -6,6 +6,7 @@ import styles from "./page.module.sass";
 import Link from "next/link";
 import Image from "next/image";
 import { CvArt } from "@/lib/art-loader";
+import ArtImage from "@/app/ArtImage";
 
 interface PanelBlockProps {
   name: string;
@@ -71,32 +72,23 @@ export default function CharacterDefaultView(props: CharacterDefaultViewProps) {
             ))}
           </ul>
         </CharacterElement>
-        {primaryArt ? (
-          <Image
-            src={primaryArt.url}
-            width={primaryArt.width}
-            height={primaryArt.height}
-            alt={primaryArt.caption}
-          />
-        ) : (
-          <></>
-        )}
+        {primaryArt ? <ArtImage art={primaryArt} /> : <></>}
       </div>
       <div className="column is-two-thirds">
         <div className="content">
           <div dangerouslySetInnerHTML={{ __html: tab.content }}></div>
 
-          {props.art
-            .filter((artItem) => artItem != primaryArt)
-            .map((art) => (
-              <Image
-                src={art.url}
-                width={art.width}
-                height={art.height}
-                alt={art.caption}
-                key={art.url}
-              />
-            ))}
+          <div className="fixed-grid has-3-cols mt-4">
+            <div className="grid">
+              {props.art
+                .filter((artItem) => artItem != primaryArt)
+                .map((art) => (
+                  <div className="cell">
+                    <ArtImage art={art} />
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,10 @@ import "./globals.scss";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Compleat Villain NEXT",
+  title: {
+    template: "%s | Compleat Villain NEXT",
+    default: "Compleat Villain NEXT",
+  },
   description: "Heroes, villains, and worlds free to use for your own works",
 };
 

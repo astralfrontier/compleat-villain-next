@@ -59,10 +59,30 @@ export async function generateMetadata({
 }: CharacterPageProps): Promise<Metadata> {
   const { id } = await params;
   const characters = loadCharacters();
+
   const character = characters.find((character) => character.id == id);
+  if (!character) {
+    throw new Error("Character not found");
+  }
+
+  const art = loadArt().filter((item) => item.faces.includes(character.name));
+
+  // Either find the preferred image, or use all images
+  const preferredArt = art.filter((item) => item.preferred) || art || [];
+  const images = preferredArt.map((item) => ({
+    url: item.url,
+    width: item.width,
+    height: item.height,
+    alt: item.caption,
+  }));
+
   return {
     title: character?.name || "No name",
     description: character?.pitch || "This character does not have a pitch",
+    openGraph: {
+      siteName: "Compleat Villain NEXT",
+      images,
+    },
   };
 }
 
