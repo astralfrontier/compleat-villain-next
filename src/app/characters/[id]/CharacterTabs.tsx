@@ -4,14 +4,16 @@ import { CvCharacter } from "@/lib/character-loader";
 import { useState } from "react";
 import CharacterDefaultView, { AffiliationLink } from "./CharacterDefaultView";
 import CharacterContentOnlyView from "./CharacterContentOnlyView";
+import { CvArt } from "@/lib/art-loader";
 
 interface CharacterTabsProps {
   character: CvCharacter;
   affiliationLinks: AffiliationLink[];
+  art: CvArt[];
 }
 
 export default function CharacterTabs(props: CharacterTabsProps) {
-  const { character } = props;
+  const { character, art } = props;
   const [selectedTab, setSelectedTab] = useState<string>("default");
   const clickToSelectTab = (tabName: string) => () => setSelectedTab(tabName);
   const sortedTabs = Object.keys(character.tabs).sort();
@@ -47,6 +49,7 @@ export default function CharacterTabs(props: CharacterTabsProps) {
                   character={character}
                   tab={tab}
                   affiliationLinks={props.affiliationLinks}
+                  art={art}
                   key={tabName}
                 />
               );
@@ -55,6 +58,7 @@ export default function CharacterTabs(props: CharacterTabsProps) {
                 <CharacterContentOnlyView
                   character={character}
                   tab={tab}
+                  art={art}
                   key={tabName}
                 />
               );

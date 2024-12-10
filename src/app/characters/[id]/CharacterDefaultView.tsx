@@ -4,6 +4,8 @@ import { CvCharacter, CvCharacterTab } from "@/lib/character-loader";
 
 import styles from "./page.module.sass";
 import Link from "next/link";
+import Image from "next/image";
+import { CvArt } from "@/lib/art-loader";
 
 interface PanelBlockProps {
   name: string;
@@ -15,6 +17,7 @@ interface CharacterDefaultViewProps {
   character: CvCharacter;
   tab: CvCharacterTab;
   affiliationLinks: AffiliationLink[];
+  art: CvArt[];
 }
 
 export interface AffiliationLink {
@@ -40,7 +43,8 @@ function CharacterElement(props: PanelBlockProps) {
 }
 
 export default function CharacterDefaultView(props: CharacterDefaultViewProps) {
-  const { character, tab, affiliationLinks } = props;
+  const { character, tab, affiliationLinks, art } = props;
+  const primaryArt = art.find((artItem) => artItem.preferred) || art[0];
 
   return (
     <div className="columns">
@@ -67,10 +71,32 @@ export default function CharacterDefaultView(props: CharacterDefaultViewProps) {
             ))}
           </ul>
         </CharacterElement>
+        {primaryArt ? (
+          <Image
+            src={primaryArt.url}
+            width={primaryArt.width}
+            height={primaryArt.height}
+            alt={primaryArt.caption}
+          />
+        ) : (
+          <></>
+        )}
       </div>
       <div className="column is-two-thirds">
         <div className="content">
           <div dangerouslySetInnerHTML={{ __html: tab.content }}></div>
+
+          {props.art
+            .filter((artItem) => artItem != primaryArt)
+            .map((art) => (
+              <Image
+                src={art.url}
+                width={art.width}
+                height={art.height}
+                alt={art.caption}
+                key={art.url}
+              />
+            ))}
         </div>
       </div>
     </div>
