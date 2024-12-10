@@ -3,14 +3,25 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <ul>
+    <>
+      <div className="grid">
         {characters.map((character) => (
-          <li key={character.id}>
-            <Link href={`/characters/${character.id}`}>{character.name}</Link>
-          </li>
+          <div className="cell" key={character.id}>
+            <div className="card">
+              <div className="card-header">
+                <div className="card-header-title">
+                  <Link href={`/characters/${character.id}`}>
+                    {character.name}
+                  </Link>
+                </div>
+              </div>
+              <div className="card-content">
+                {character.pitch || "No pitch for this character"}
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   );
 }
