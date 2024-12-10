@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import markdownit from "markdown-it";
 import slug from "slug";
+import yaml from "js-yaml";
 const matter = require("gray-matter");
 
 export interface CvCharacterTab {
@@ -67,11 +68,11 @@ function loadCharacters(): CvCharacter[] {
     return fs.readdirSync(DATA_CHARACTERS_ROOT).map((characterPath) => {
       const fullCharacterPath = path.join(DATA_CHARACTERS_ROOT, characterPath);
 
-      const characterJson: CvCharacter = JSON.parse(
+      const characterJson: CvCharacter = yaml.load(
         fs
-          .readFileSync(path.join(fullCharacterPath, "character.json"))
+          .readFileSync(path.join(fullCharacterPath, "character.yaml"))
           .toString()
-      );
+      ) as CvCharacter;
 
       const tabList: CvCharacterTab[] = fs
         .readdirSync(fullCharacterPath)
