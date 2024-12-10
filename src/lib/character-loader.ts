@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import slug from "slug";
 const matter = require("gray-matter");
 
 export interface CvCharacterTab {
@@ -11,6 +12,9 @@ export interface CvCharacterTab {
 
 // What does a character look like?
 export interface CvCharacter {
+  // A slug for representing the character name in a URL-friendly fashion
+  id: string;
+
   // The character's official name, usually a callsign or hero name
   name: string;
 
@@ -90,6 +94,9 @@ function loadCharacters(): CvCharacter[] {
         {} as Record<string, CvCharacterTab>
       );
       return {
+        // Specify a default character ID, but let the JSON override it
+        // @ts-ignore
+        id: slug(characterJson.name),
         ...characterJson,
         tabs,
       };
