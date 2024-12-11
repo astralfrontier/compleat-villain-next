@@ -6,3 +6,17 @@
   width: 787
   height: 513
   attribution: &insomn Art by Mike Williams, insomn-art.tumblr.com
+- caption: Not-So-Negamarmot
+  faces:
+    - Negamarmot
+  url: /art/insomn/not-so-negamarmot.png
+  width: 1303
+  height: 1024
+  attribution: *insomn
+- caption: Negamarmot (original)
+  faces:
+    - Negamarmot
+  url: /art/insomn/negamarmot-original.png
+  width: 787
+  height: 513
+  attribution: *insomn
