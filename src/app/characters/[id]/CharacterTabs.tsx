@@ -5,6 +5,7 @@ import { useState } from "react";
 import CharacterDefaultView, { AffiliationLink } from "./CharacterDefaultView";
 import CharacterContentOnlyView from "./CharacterContentOnlyView";
 import { CvArt } from "@/lib/art-loader";
+import SentinelsComicsView from "./SentinelsComicsView";
 
 interface CharacterTabsProps {
   character: CvCharacter;
@@ -49,6 +50,15 @@ export default function CharacterTabs(props: CharacterTabsProps) {
                   character={character}
                   tab={tab}
                   affiliationLinks={props.affiliationLinks}
+                  art={art}
+                  key={tabName}
+                />
+              );
+            case "sentinels-comics":
+              return (
+                <SentinelsComicsView
+                  character={character}
+                  tab={tab}
                   art={art}
                   key={tabName}
                 />
