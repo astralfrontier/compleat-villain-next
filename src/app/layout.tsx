@@ -26,6 +26,9 @@ export default function RootLayout({
                 <Link href={"/"}>Home</Link>
               </p>
               <p>
+                <Link href={"/game-index"}>Index</Link>
+              </p>
+              <p>
                 <Link
                   href={
                     "https://github.com/astralfrontier/compleat-villain-next"

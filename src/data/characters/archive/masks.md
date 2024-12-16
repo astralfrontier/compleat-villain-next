@@ -1,6 +1,6 @@
 ---
 name: Masks
-template: content-only
+template: masks
 playbook: Nova
 ---
 

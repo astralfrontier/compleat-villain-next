@@ -2,35 +2,12 @@
 
 import ArtImage from "@/app/ArtImage";
 import { CvArt } from "@/lib/art-loader";
-import { CvCharacter, CvCharacterTab } from "@/lib/character-loader";
-
-interface SentinelsComicsRankedAttribute {
-  name: string;
-  dice: string;
-}
-
-interface SentinelsComicsAbility {
-  name: string;
-  type: string;
-  text: string;
-}
-
-interface SentinelsComicsCharacter {
-  background?: string;
-  powerSource?: string;
-  archetype?: string;
-  personality?: string;
-  health?: { [key: string]: SentinelsComicsRankedAttribute };
-  qualities?: SentinelsComicsRankedAttribute[];
-  powers?: SentinelsComicsRankedAttribute[];
-  abilities?: { [key: string]: SentinelsComicsAbility[] };
-  principles?: SentinelsComicsAbility[];
-}
-
-interface SentinelsComicsAbilityProps {
-  color: string;
-  abilities: SentinelsComicsAbility[];
-}
+import {
+  CvCharacter,
+  CvCharacterTab,
+  SentinelsComicsAbilityProps,
+  SentinelsComicsCharacter,
+} from "@/lib/character-loader";
 
 function SentinelsComicsAbility(props: SentinelsComicsAbilityProps) {
   const { color, abilities } = props;

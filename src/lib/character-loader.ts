@@ -8,7 +8,7 @@ import yaml from "js-yaml";
 const matter = require("gray-matter");
 
 export interface CvCharacterTab {
-  data: object;
+  data: { [key: string]: any };
   content: string;
 }
 
@@ -52,6 +52,34 @@ export interface CvCharacter {
 
   // Any tabs to show about this character. Records are (tab name, tab contents)
   tabs: Record<string, CvCharacterTab>;
+}
+
+export interface SentinelsComicsRankedAttribute {
+  name: string;
+  dice: string;
+}
+
+export interface SentinelsComicsAbility {
+  name: string;
+  type: string;
+  text: string;
+}
+
+export interface SentinelsComicsCharacter {
+  background?: string;
+  powerSource?: string;
+  archetype?: string;
+  personality?: string;
+  health?: { [key: string]: SentinelsComicsRankedAttribute };
+  qualities?: SentinelsComicsRankedAttribute[];
+  powers?: SentinelsComicsRankedAttribute[];
+  abilities?: { [key: string]: SentinelsComicsAbility[] };
+  principles?: SentinelsComicsAbility[];
+}
+
+export interface SentinelsComicsAbilityProps {
+  color: string;
+  abilities: SentinelsComicsAbility[];
 }
 
 // NEXTJS_ROOT comes from next.config.ts at the root level
